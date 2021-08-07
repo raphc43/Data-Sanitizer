@@ -1,15 +1,18 @@
-def data(arg):
+from stats import show_stats
+
+def trim_data(arg):
 	'''Function that takes an input,
 	sanitize or trims the repeated data 
 	and return it as a unique one'''
 
-	# Takes a file and stores it in a variable beforing closing
+	# Takes a txt file and stores it in a variable beforing closing
 	with open(arg) as file:
 		data_list = file.readlines()
 
 	# For loop to replace '\n' in list items.
 	''' This procedure was written because because last
-	item was kept ignored due to absence of newline character '''
+	item was kept ignored by sets due to absence of newline 
+	character '''
 	new_data = []
 	for d in data_list:
 		if '\n' in d:
@@ -29,28 +32,16 @@ def data(arg):
 	
 	print("Unique items: ")
 
-	# Runs a for loop to print unique values
+	# Checks whether list has data or not.
 	if unique_data_list:
+		# Prints the unique data
 		for u in unique_data_list:
 			print(u)
 	
 	else:
 		print("None")
 
+	# Shows statistics
+	show_stats(new_data, unique_data_list)
 
-	# Statistics
-	print("\n---------- STATS ----------")
-
-	if new_data:
-		print(f"Total items: {len(new_data)}")
-
-		trimmed = len(new_data) - len(unique_data_list)
-		print(f"Trimmed items: {trimmed} or {int(trimmed * 100 / len(new_data))}%")
-		print(f"Remaining items: {len(unique_data_list)} or "
-			f"{int(len(unique_data_list) * 100 / len(new_data))}%")
-	else:
-		print("Total items: 0")
-		print("Trimmed items: 0")
-		print("Remaining items: 0")
-
-data('emails.txt')
+trim_data('emails.txt')
