@@ -10,9 +10,8 @@ def trim_data(arg):
 		data_list = file.readlines()
 
 	# For loop to replace '\n' in list items.
-	''' This procedure was written because because last
-	item was kept ignored by sets due to absence of newline 
-	character '''
+	# This procedure was written because last item was kept 
+	# ignored by sets due to absence of newline character
 	new_data = []
 	for d in data_list:
 		if '\n' in d:
